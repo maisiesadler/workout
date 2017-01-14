@@ -8,24 +8,17 @@ var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope) {
     var data = workout.getMovements();
 
-    var movementView = "views/movement.html";
-
     $scope.movements = data;
 
     $scope.startNew = function(){
         $scope.workout = workout.createWorkout($scope.date);
     }
 
-    $scope.add = function(item){
+    $scope.addMovToWorkout = function(movement){
         if ($scope.workout){
-            var section = workout.createWeightsSection(item, item.defaultWeight);
+            var section = workout.createWeightsSection(movement, movement.defaultWeight);
             workout.addSection($scope.workout, section);
         }
-    };
-
-    $scope.saveMovements = function(){
-        workout.setMovements($scope.movements);
-        $scope.editMovements = false;
     };
 
     $scope.saveWorkouts = function(){
@@ -53,26 +46,6 @@ app.controller('myCtrl', function($scope) {
     $scope.removeSectionFromWorkout = function(index) {
         $scope.workout.sections.removeAt(index);
     };
-
-    $scope.removeWorkoutFromListAtIndex = function(index) {
-        $scope.workouts.removeAt(index);
-    };
-
-    $scope.removeMovement = function(index) {
-        $scope.movements.removeAt(index);
-    };
-
-    $scope.addMovement = function() {
-        $scope.movements.push(workout.addBlankMovement());
-    };
-
-    $scope.viewWorkoutList = function(){
-        $scope.workouts = workout.getWorkouts();
-    }
-
-    $scope.saveWorkoutList = function(){
-        workout.setWorkouts($scope.workouts);
-    }
 });
 
 

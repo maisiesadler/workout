@@ -20,8 +20,20 @@ number-input > div {
     display: inline-block;
 }
 
-input[type=number] {
+.headers {
+    padding-left: 52px;
+    font-weight: bold;
+}
+
+.movement-name{
+    width: 200px;
+    display: inline-block;
+}
+
+.movement-incr, 
+.movement-weight {
     width: 40px; 
+    display: inline-block;
 }
 
 .remove {
