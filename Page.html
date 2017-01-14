@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="C:\Users\Maisie\Desktop\wos\style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="C:\Users\Maisie\Desktop\wos\helper.js"></script>
+    <script src="C:\Users\Maisie\Desktop\wos\workout.js"></script>
+    <script src="C:\Users\Maisie\Desktop\wos\app.js"></script>
+    <script src="C:\Users\Maisie\Desktop\wos\numberinput.js"></script>
+</head>
+
+<body>
+<h1 href="views/movements.html">
+Test
+</h1>
+<div ng-app="myApp" ng-controller="myCtrl as ct">
+<div>
+    <input type="date" ng-model="date" /><span ng-click="setNow()">Now</span>
+    <div ng-click="startNew()">Start</div>
+</div>
+<div class="movements ilblock">
+    <h2>Movements</h2><span ng-click="editMovements = !editMovements">Edit</span>
+    <span ng-click="addMovement()">Add new</span>
+    <ul>
+        <li ng-repeat="movement in movements" ng-click=add(movement)>
+            <div ng-show="editMovements">
+                <span ng-click="removeMovement($index)" class="remove">X</span>
+                <input ng-model="movement.name" />
+                <input ng-model="movement.defaultWeight" type="number" />
+                <input ng-model="movement.increment" type="number" />
+            </div>
+            <div ng-hide="editMovements">
+                {{movement.name}}
+                {{movement.defaultWeight}}
+                {{movement.increment}}
+            </div>
+        </li>
+        <div ng-show="editMovements" ng-click="saveMovements()">save</div>
+    </ul>
+</div>
+<div class="workouts ilblock" ng-show="workout.date">
+    <h2>Workout</h2>
+     <span>{{displayDate(workout.date)}}</span>
+     <span ng-click="clearWorkout()">Clear list</span>
+    <ul>
+        <li ng-repeat="section in workout.sections">
+            <span ng-click="removeSectionFromWorkout($index)" class="remove">X</span>
+            {{section.movement.name}}
+            <number-input number="section.weight" increment="section.movement.increment" class="weight"></number-input>
+            <number-input number="section.sets" class="sets"></number-input>
+            <number-input number="section.reps" class="reps"></number-input>
+        </li>
+        <div ng-click="saveWorkouts()">save</div>
+    </ul>
+</div>
+
+<div class="workout-viewer">
+    <h2>Workouts</h2>
+    <span ng-click="viewWorkoutList()">Refresh</span>
+    <span ng-click="saveWorkoutList()" ng-show="workouts">Save</span>
+
+    <div ng-repeat="workout in workouts">
+        <span class="remove" ng-click="removeWorkoutFromListAtIndex($index)">X</span>
+        {{displayDate(workout.date)}}
+        <div class="section-desc" ng-repeat="section in workout.sections">
+            {{section.movement.name}} ({{section.sets}}x{{section.reps}} @ {{section.weight}})
+        </div>
+    </div>
+
+</div>
+</body>
+
+</html>

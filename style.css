@@ -1,0 +1,38 @@
+body{
+	font-family:Arial;
+    -webkit-user-select: none;
+}
+
+.arrow {
+    height: 7px;
+    display: block;
+}
+
+number-input div {
+    display:inline-block;
+}
+
+number-input > div {
+    width: 40px;
+}
+
+.ilblock {
+    display: inline-block;
+}
+
+input[type=number] {
+    width: 40px; 
+}
+
+.remove {
+    color: red;
+    font-weight: bold;
+}
+
+.arrows {
+    float: right;
+}
+
+.section-desc{
+    margin-left: 20px;
+}
