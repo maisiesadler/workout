@@ -1,15 +1,6 @@
-(function () {
-    var data = [];
-    data.push (workout.addMovement("DL", "Weights"));
-})();
-
 var app = angular.module('myApp', []);
 
 app.controller('myCtrl', function($scope) {
-    var data = workout.getMovements();
-
-    $scope.movements = data;
-
     $scope.startNew = function(){
         $scope.workout = workout.createWorkout($scope.date);
     }
@@ -46,6 +37,10 @@ app.controller('myCtrl', function($scope) {
     $scope.removeSectionFromWorkout = function(index) {
         $scope.workout.sections.removeAt(index);
     };
+
+    $scope.auth = function () {
+        gdocs.handleAuthClick();
+    }
 });
 
 

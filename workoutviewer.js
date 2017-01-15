@@ -21,6 +21,8 @@ app.component('workoutViewer',  {
                 this.workouts = workout.getWorkouts();
             }
 
+            this.viewWorkoutList();
+
             this.saveWorkoutList = function(){
                 workout.setWorkouts(this.workouts);
                 this.changed = false;

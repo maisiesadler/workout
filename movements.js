@@ -1,11 +1,12 @@
 app.component('movements',  {
         bindings: {
-            addToWorkout: '&'
+            addToWorkout: '&',
+            editable: '<'
         },
         template:[
             '<h2>Movements</h2>',
-            '<span ng-click="mov.editMovements = !mov.editMovements">Edit</span>',
-            '<span ng-click="mov.addMovement()">Add new</span>',
+            '<span ng-click="mov.editMovements = !mov.editMovements" ng-show="mov.editable">Edit</span>',
+            '<span ng-click="mov.addMovement()" ng-show="mov.editable">Add new</span>',
             '<div class="headers" ng-show="mov.editMovements">',
                 '<div class="movement-name">Name</div>',
                 '<div class="movement-weight">Wgt</div>',
@@ -21,8 +22,10 @@ app.component('movements',  {
                     '</div>',
                     '<div ng-hide="mov.editMovements">',
                         '<div class="movement-name">{{movement.name}}</div>',
-                        '<div class="movement-weight">{{movement.defaultWeight}}</div>',
-                        '<div class="movement-incr">{{movement.increment}}</div>',
+                        '<div class="ilblock" ng-show="mov.editable">',
+                            '<div class="movement-weight">{{movement.defaultWeight}}</div>',
+                            '<div class="movement-incr">{{movement.increment}}</div>',
+                        '</div>',
                     '</div>',
                 '</li>',
                 '<div ng-show="mov.editMovements" ng-click="mov.saveMovements()">save</div>',
@@ -44,7 +47,9 @@ app.component('movements',  {
             };
 
             this.addTo = function(movement){
-                this.addToWorkout({movement: movement});
+                if (!this.editMovements){
+                    this.addToWorkout({movement: movement});
+                }
             };
         },
         controllerAs: 'mov'
