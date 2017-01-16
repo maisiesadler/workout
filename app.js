@@ -1,9 +1,14 @@
 var app = angular.module('myApp', []);
 
 app.controller('myCtrl', function($scope) {
-    $scope.startNew = function(){
+    $scope.startNew = function() {
         $scope.workout = workout.createWorkout($scope.date);
-    }
+    };
+
+    $scope.updateMode = function (mode) {
+        $scope.appmode = mode;
+        $scope.$emit('toggleMenu');
+    };
 
     $scope.addMovToWorkout = function(movement){
         if ($scope.workout){

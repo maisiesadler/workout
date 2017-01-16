@@ -1,6 +1,8 @@
 body{
 	font-family:Arial;
     -webkit-user-select: none;
+    background-color: #9682ba;
+    color: #fff;
 }
 
 .arrow {
@@ -8,8 +10,20 @@ body{
     display: block;
 }
 
+.menu-button {
+    font-weight: bold;
+}
+
 #mnu {
     padding-left: 10px;
+    background: #ccc;
+    font-weight: bold;
+}
+
+#mnu div {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #13acb5;
 }
 
 number-input div {
@@ -51,4 +65,8 @@ number-input > div {
 
 .section-desc{
     margin-left: 20px;
+}
+
+.add-wos > div{
+    display: inline-block;
 }

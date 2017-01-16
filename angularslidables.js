@@ -28,9 +28,7 @@ app
         link: function(scope, element, attrs) {
             var target, content;
             
-            attrs.expanded = false;
-            
-            element.bind('click', function() {
+            var toggleMenu = function() {
                 if (!target) target = document.querySelector(attrs.slideToggle);
                 if (!content) content = target.querySelector('.slideable_content');
                 
@@ -43,7 +41,13 @@ app
                     target.style.height = '0px';
                 }
                 attrs.expanded = !attrs.expanded;
-            });
+            };
+
+            scope.$on('toggleMenu', toggleMenu);
+
+            attrs.expanded = false;
+            
+            element.bind('click', toggleMenu);
         }
     }
 });

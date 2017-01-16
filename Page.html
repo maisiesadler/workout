@@ -16,11 +16,11 @@
 
 <body>
 <div ng-app="myApp" ng-controller="myCtrl as ct">
-    <div slide-toggle="#mnu">Mnu</div>
+    <div slide-toggle="#mnu" class="menu-button">O</div>
     <div id="mnu" class="slideable" duration="0.5s">
-        <div ng-click="appmode='view-mos'">View/Edit Movements</div>
-        <div ng-click="appmode='add-wos'">Add New Workout</div>
-        <div ng-click="appmode='view-wos'">View Workouts</div>
+        <div ng-click="updateMode('view-mos')">View/Edit Movements</div>
+        <div ng-click="updateMode('add-wos')">Add New Workout</div>
+        <div ng-click="updateMode('view-wos')">View Workouts</div>
     </div>
     <!--<div ng-click="auth()">Click me</div>-->
     <div ng-switch on="appmode">
@@ -29,29 +29,31 @@
                 <movements editable="true" />
             </div>
         </div>
-        <div ng-switch-when="add-wos">
-            <div>
-                <input type="date" ng-model="date" />
-                <div ng-click="setNow()">Now</div>
-                <div ng-click="startNew()">Start</div>
-            </div>
+        <div ng-switch-when="add-wos" class="add-wos">
             <div class="movements ilblock">
                 <movements add-to-workout="addMovToWorkout(movement)" editable="false" />
             </div>
-            <div class="workouts ilblock" ng-show="workout.date">
+            <div>
                 <h2>Workout</h2>
-                <span>{{displayDate(workout.date)}}</span>
-                <span ng-click="clearWorkout()">Clear list</span>
-                <ul>
-                    <li ng-repeat="section in workout.sections">
-                        <span ng-click="removeSectionFromWorkout($index)" class="remove">X</span>
-                        <span class="movement-name">{{section.movement.name}}</span>
-                        <number-input number="section.weight" increment="section.movement.increment" class="weight"></number-input>
-                        <number-input number="section.sets" class="sets"></number-input>
-                        <number-input number="section.reps" class="reps"></number-input>
-                    </li>
-                    <div ng-click="saveWorkouts()">save</div>
-                </ul>
+                <div>
+                    <input type="date" ng-model="date" />
+                    <div ng-click="setNow()">Now</div>
+                    <div ng-click="startNew()">Start</div>
+                </div>
+                <div class="workouts ilblock" ng-show="workout.date">
+                    <span>{{displayDate(workout.date)}}</span>
+                    <span ng-click="clearWorkout()">Clear list</span>
+                    <ul>
+                        <li ng-repeat="section in workout.sections">
+                            <span ng-click="removeSectionFromWorkout($index)" class="remove">X</span>
+                            <span class="movement-name">{{section.movement.name}}</span>
+                            <number-input number="section.weight" increment="section.movement.increment" class="weight"></number-input>
+                            <number-input number="section.sets" class="sets"></number-input>
+                            <number-input number="section.reps" class="reps"></number-input>
+                        </li>
+                        <div ng-click="saveWorkouts()">save</div>
+                    </ul>
+                </div>
             </div>
         </div>
         <div ng-switch-when="view-wos">
