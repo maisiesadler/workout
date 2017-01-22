@@ -1,6 +1,6 @@
 app.component('movements',  {
         bindings: {
-            addToWorkout: '&',
+            workoutOnClick: '&',
             editable: '<'
         },
         template:[
@@ -48,7 +48,7 @@ app.component('movements',  {
 
             this.addTo = function(movement){
                 if (!this.editMovements){
-                    this.addToWorkout({movement: movement});
+                    this.workoutOnClick({movement: movement});
                 }
             };
         },

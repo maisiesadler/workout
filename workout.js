@@ -1,15 +1,23 @@
 workout = {
-    addMovement: function(name, type, defaultWeight, increment){
+    addWeightsMovement: function(name, defaultWeight, increment){
         return {
             name: name,
-            type: type,
+            type: "W",
             defaultWeight: defaultWeight,
             increment: increment
         };
     },
 
+    addCardioMovement: function(name, type, description){
+        return {
+            name: name,
+            type: "C",
+            description: description || ""
+        };
+    },
+
     addBlankMovement: function(){
-        return this.addMovement("", "W", 50,2.5)
+        return this.addWeightsMovement("",50,2.5)
     },
 
     createWorkout: function(date){
@@ -23,6 +31,13 @@ workout = {
     addSection: function(workout, section){
         workout.sections.push(section);
         return workout;
+    },
+
+    createNewCombination: function(name){
+        return {
+            name: name,
+            sections: []
+        }
     },
 
     createWeightsSection: function (movement, weight, reps, sets) {
@@ -62,5 +77,13 @@ workout = {
     getWorkouts: function () {
         var workouts = JSON.parse(window.localStorage.getItem("workouts")) || [];
         return workouts;
+    },
+
+    setCombinations: function(combinations){
+        window.localStorage.setItem("combinations", helper.angularJsonStringify(combinations));
+    },
+    getCombinations: function () {
+        var combinations = JSON.parse(window.localStorage.getItem("combinations")) || [];
+        return combinations;
     }
 };
