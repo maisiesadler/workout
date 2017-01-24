@@ -1,23 +1,16 @@
 workout = {
-    addWeightsMovement: function(name, defaultWeight, increment){
+    addMovement: function(name, defaultWeight, increment, type, description){
         return {
             name: name,
-            type: "W",
+            type: type,
             defaultWeight: defaultWeight,
-            increment: increment
-        };
-    },
-
-    addCardioMovement: function(name, type, description){
-        return {
-            name: name,
-            type: "C",
+            increment: increment,
             description: description || ""
         };
     },
 
     addBlankMovement: function(){
-        return this.addWeightsMovement("",50,2.5)
+        return this.addMovement("",50,2.5, "W")
     },
 
     createWorkout: function(date){

@@ -48,6 +48,12 @@ number-input > div {
     display: inline-block;
 }
 
+.movement-name input,
+.movement-incr input, 
+.movement-weight input{
+    width: 100%;
+}
+
 .movement-incr, 
 .movement-weight {
     width: 40px; 
